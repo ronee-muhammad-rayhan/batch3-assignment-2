@@ -1,4 +1,4 @@
-# apollo-flix
+# batch3-assignment-2
 npm init
 <!-- ./dist/server.js //instead of index.js -->
 
