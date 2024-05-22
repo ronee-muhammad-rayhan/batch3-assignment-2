@@ -6,9 +6,12 @@ const createOrder = async (payload: TOrder) => {
   return result;
 };
 
-const retrieveAllOrders = async () => {
-  const result = await Order.find({});
-  return result;
+const retrieveAllOrders = async (queryEmail:any) => {
+  if(queryEmail) {
+    return await Order.find({email:queryEmail});
+  }
+  return await Order.find({});
+  
 };
 
 export const OrderServices = {

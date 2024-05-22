@@ -11,8 +11,9 @@ const createOrder = async (req: Request, res: Response) => {
   });
 };
 const retrieveAllOrders = async (req: Request, res: Response) => {
-  
-  const result = await OrderServices.retrieveAllOrders();
+  // console.log(req.query);
+  const queryEmail = req.query.email;
+  const result = await OrderServices.retrieveAllOrders(queryEmail);
 
   res.json({
     success: true,
