@@ -6,14 +6,20 @@ const createProduct = async (payload: TProduct) => {
   return result;
 };
 const getAllProducts = async (searchTerm: TQuery) => {
-  const result = await Product.find({
-    $or: [
-      { name: { $regex: searchTerm, $options: "i" } },
-      { description: { $regex: searchTerm, $options: "i" } },
-      { category: { $regex: searchTerm, $options: "i" } },
-      { tags: { $regex: searchTerm, $options: "i" } },
-    ],
-  });
+  // console.log(searchTerm);
+  let query = {}
+  if (searchTerm){
+    query = {
+      $or: [
+        { name: { $regex: searchTerm, $options: "i" } },
+        { description: { $regex: searchTerm, $options: "i" } },
+        { category: { $regex: searchTerm, $options: "i" } },
+        { tags: { $regex: searchTerm, $options: "i" } },
+      ],
+    }
+  }
+
+  const result = await Product.find(query);
 
   return result;
 };

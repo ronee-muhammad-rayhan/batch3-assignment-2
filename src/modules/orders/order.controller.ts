@@ -1,8 +1,18 @@
 import { Request, Response } from "express";
 import { OrderServices } from "./order.service";
-const createProduct = async (req: Request, res: Response) => {
-  const productData = req.body;
-  const result = await OrderServices.createOrder(productData);
+const createOrder = async (req: Request, res: Response) => {
+  const orderData = req.body;
+  const result = await OrderServices.createOrder(orderData);
+
+  res.json({
+    success: true,
+    message: "Order placed successfully",
+    data: result,
+  });
+};
+const retrieveAllOrders = async (req: Request, res: Response) => {
+  
+  const result = await OrderServices.retrieveAllOrders();
 
   res.json({
     success: true,
@@ -12,5 +22,6 @@ const createProduct = async (req: Request, res: Response) => {
 };
 
 export const OrderController = {
-  createProduct,
+  createOrder,
+  retrieveAllOrders,
 };
