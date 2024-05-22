@@ -1,12 +1,20 @@
-import TProduct from "./product.interface";
+import TProduct, { TQuery } from "./product.interface";
 import { Product } from "./product.model";
 
 const createProduct = async (payload: TProduct) => {
   const result = await Product.create(payload);
   return result;
 };
-const getAllProducts = async () => {
-  const result = await Product.find();
+const getAllProducts = async (searchTerm: TQuery) => {
+  const result = await Product.find({
+    $or: [
+      { name: { $regex: searchTerm, $options: "i" } },
+      { description: { $regex: searchTerm, $options: "i" } },
+      { category: { $regex: searchTerm, $options: "i" } },
+      { tags: { $regex: searchTerm, $options: "i" } },
+    ],
+  });
+  //   const products = await Product.find();Í
   return result;
 };
 
@@ -28,7 +36,6 @@ const updateProductById = async (
 };
 
 const deleteAProduct = async (productId: string) => {
-
   const result = await Product.deleteOne({ _id: productId });
 
   return result;

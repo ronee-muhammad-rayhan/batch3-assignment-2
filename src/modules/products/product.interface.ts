@@ -1,3 +1,5 @@
+import { ParsedQs } from 'qs';
+
 export type TVariant = {
     type: string;
     value: string;
@@ -17,5 +19,7 @@ export type TProduct = {
     variants: [TVariant];
     inventory: TInventory;
 }
+
+export type TQuery = string | ParsedQs | string[] | ParsedQs[] | undefined;
 
 export default TProduct;

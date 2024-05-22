@@ -18,6 +18,22 @@ const getAllProducts = async (req: Request, res: Response) => {
   //   console.log(searchTerm);
 
   try {
+    const products = await ProductServices.getAllProducts(searchTerm);
+
+    res.json({
+      success: true,
+      message: `Products matching search term '${searchTerm}' fetched successfully!`,
+      data: products,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while searching for products.",
+      error: error.message,
+    });
+  }
+
+  /* try {
     const products = await Product.find({
       $or: [
         { name: { $regex: searchTerm, $options: "i" } },
@@ -38,14 +54,14 @@ const getAllProducts = async (req: Request, res: Response) => {
       message: "An error occurred while searching for products.",
       error: error.message,
     });
-  }
-//   const result = await ProductServices.getAllProducts();
+  } */
+  //   const result = await ProductServices.getAllProducts();
 
-//   res.json({
-//     success: true,
-//     message: "Product fetched successfully",
-//     data: result,
-//   });
+  //   res.json({
+  //     success: true,
+  //     message: "Product fetched successfully",
+  //     data: result,
+  //   });
 };
 
 const getProductById = async (req: Request, res: Response) => {
