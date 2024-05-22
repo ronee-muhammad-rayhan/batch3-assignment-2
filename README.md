@@ -112,3 +112,6 @@ npx eslint . --fix
 https://eslint.org/docs/latest/use/configure/ignore
 
 <!-- npx eslint . --ignore-pattern ".config/*" --># batch3-assignment-2
+
+<!-- ToDo -->
+<!-- remove ObjectIDs from elements  -->
