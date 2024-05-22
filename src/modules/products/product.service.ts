@@ -14,7 +14,7 @@ const getAllProducts = async (searchTerm: TQuery) => {
       { tags: { $regex: searchTerm, $options: "i" } },
     ],
   });
-  //   const products = await Product.find();Í
+
   return result;
 };
 
