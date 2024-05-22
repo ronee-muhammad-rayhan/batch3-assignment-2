@@ -36,11 +36,25 @@ const getProductById = async (req: Request, res: Response) => {
 const updateProductById = async (req: Request, res: Response) => {
   const productId = req.params.productId;
   const updatedProduct = req.body;
-  const result = await ProductServices.updateProductById(productId,updatedProduct);
+  const result = await ProductServices.updateProductById(
+    productId,
+    updatedProduct
+  );
 
   res.json({
     success: true,
     message: "Product updated successfully",
+    data: result,
+  });
+};
+
+const deleteAProduct = async (req: Request, res: Response) => {
+  const productId = req.params.productId;
+  const result = await ProductServices.deleteAProduct(productId);
+
+  res.json({
+    success: true,
+    message: "Product deleted successfully",
     data: result,
   });
 };
@@ -50,4 +64,5 @@ export const ProductController = {
   getAllProducts,
   getProductById,
   updateProductById,
+  deleteAProduct,
 };
